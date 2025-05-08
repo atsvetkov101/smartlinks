@@ -1,0 +1,15 @@
+version: "3"
+services:
+
+  api:
+    image: smartlink:latest
+    volumes: []
+    environment:
+      - PORT=5000
+    ports:
+      - "127.0.0.1:5000:5000"
+    command: node dist/src/entrypoints/api/main
+
+
+
+  
