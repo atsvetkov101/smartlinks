@@ -3,6 +3,11 @@ import { LoggerModule } from '../../src/logger/logger.module';
 import { LoggerService } from '../../src/logger/logger.service';
 import { AppController } from '../../src/entrypoints/api/app/app.controller';
 import { AppService } from '../../src/entrypoints/api/app/app.service';
+import { AppUsecases } from '../../src/entrypoints/api/app/app.usecases';
+import { AuthService } from '../../src/entrypoints/api/auth/auth.service';
+import { JwtModule } from '@nestjs/jwt';
+
+const JWT_SECRET = 'JWT_SECRET';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -10,9 +15,14 @@ describe('AppController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [LoggerModule],
+      imports: [LoggerModule,
+        JwtModule.register({
+          global: true,
+          secret: JWT_SECRET,
+        }),
+      ],
       controllers: [AppController],
-      providers: [AppService, LoggerService],
+      providers: [AppService, LoggerService, AppUsecases, AuthService],
     }).compile();
 
     appController = module.get<AppController>(AppController);
