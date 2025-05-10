@@ -6,6 +6,7 @@ import { LoggerService } from '../../logger/logger.service';
 
 import { AppModule } from './app/app.module';
 import { getHttpContextConfig } from '../../configs/http-context.config';
+import { AuthenticationMiddleware } from './auth/auth.middleware';
 
 const PORT = 3000;
 
@@ -15,7 +16,7 @@ async function bootstrap() {
 	const logger = await app.resolve(LoggerService);
 
 	app.use(httpContext.middleware);
-    
+
 	app.use(getHttpContextConfig());
 
 	app.useGlobalPipes(
