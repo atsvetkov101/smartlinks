@@ -3,15 +3,25 @@ import { Body, Controller, Get, HttpCode, HttpStatus, Post, Request, Response } 
 import { AppService } from './app.service';
 import { Authentication } from '../../../contracts/authentication';
 import { AppUsecases } from './app.usecases';
-
+import { CommandFactory } from '../../../core/command-factory';
+import { ICommand } from '../../../core/interfaces/icommand';
+import { Chain } from '../../../core/chain/chain';
 @Controller()
 export class AppController {
-	constructor(private readonly appService: AppService, 
+	constructor(
+		private readonly appService: AppService,
 		private readonly appUsecases: AppUsecases,
+		private readonly commandFactory: CommandFactory,
+		private readonly chain: Chain,
 	) {}
 
 	@Get()
-	getHello(@Request() req: any = {}): string {
+	getHello(): string {
+		// const RuleCommand: ICommand = this.commandFactory.createRuleCommand({test1: 'test1', test2: 'test2'});
+		// this.chain
+		
+		
+
 		return this.appService.getHello();
 	}
 

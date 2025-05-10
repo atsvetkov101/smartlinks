@@ -7,6 +7,16 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "istanbul",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "istanbul"],
+            "console":"integratedTerminal",
+            "env": {
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "start:api:dev",
             "runtimeExecutable": "npm",
             "runtimeArgs": ["run", "start:api:dev"],
@@ -30,6 +40,9 @@
             ],
             "internalConsoleOptions": "openOnSessionStart",
             "preLaunchTask": "npm: build",
+            "env": {
+                "NODE_ENV": "development"
+            }
         },
         {
             "type": "node",
