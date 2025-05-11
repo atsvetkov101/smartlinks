@@ -9,15 +9,15 @@ describe('RuleCommand tests', () => {
     before(() => {
       sinon.stub(console, 'log').callsFake((message) => messages.push(message));
     });
-    after(async () => {
+    after(() => {
       sinon.restore();
     });
-    it('RuleCommand test', async () => {
+    it('RuleCommand test', () => {
       const command = new RuleCommand({});
       expect(command).not.to.be.undefined;
       expect(command).not.to.be.null; 
     });
-    it('RuleCommand GetType test', async () => {
+    it('RuleCommand GetType test', () => {
       const command = new RuleCommand({});
       const type = command.getType();
       expect(type).to.equal('RuleCommand');

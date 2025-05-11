@@ -1,10 +1,9 @@
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import { before, after } from 'node:test';
 import sinon from 'sinon';
 import { ConditionExecutionHandler } from '../src/core/chain/condition-execution-handler';
 import { LoggerService } from '../src/logger/logger.service';
 import { Chain } from '../src/core/chain/chain';
-import * as chai from 'chai'; 
 
 const randomDecision = (num: number): boolean => {
   const probability = Math.abs(num) / 100; // Пример: num = 30 → 30% шанс true
@@ -20,9 +19,9 @@ describe('chain-of-condition tests', () => {
       const conditionExecutionHandler = new ConditionExecutionHandler(loggerService);
       chain = new Chain(conditionExecutionHandler, loggerService);
     });
-    after(async () => {
+    after(() => {
     });
-    it('chain-of-condition random condition test', async () => {
+    it('chain-of-condition random condition test', () => {
       
       const conditions = [1,2,3,4,5,6,7,8,9,10];
 			const result = chain.start(conditions);

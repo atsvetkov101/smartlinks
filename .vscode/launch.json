@@ -7,6 +7,26 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "nyc",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "nyc"],
+            "console":"integratedTerminal",
+            "env": {
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "test",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "test"],
+            "console":"integratedTerminal",
+            "env": {
+            }
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "istanbul",
             "runtimeExecutable": "npm",
             "runtimeArgs": ["run", "istanbul"],
@@ -38,7 +58,7 @@
               "--colors",
               "${workspaceFolder}/dist/test/**/*.js"
             ],
-            "internalConsoleOptions": "openOnSessionStart",
+            "console":"integratedTerminal",
             "preLaunchTask": "npm: build",
             "env": {
                 "NODE_ENV": "development"

@@ -8,10 +8,10 @@ describe('Dummy tests', () => {
 		before(() => {
 			sinon.stub(console, 'log').callsFake((message) => messages.push(message));
 		});
-		after(async () => {
+		after(() => {
 			sinon.restore();
 		});
-		it('dummy test', async () => {
+		it('dummy test', () => {
 			expect(true).equals(true);
 		});
 	});
