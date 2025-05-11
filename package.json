@@ -20,7 +20,9 @@
     "pretest": "npm run build",
     "test": "mocha dist/test/**/*.js --timeout 60000 --exit",
     "nyc": "nyc mocha dist/test/**/*.js --timeout 60000 --exit",
-    "ts-test": "ts-mocha test/**/*.spec.ts --timeout 60000",
+    "ts-test": "ts-mocha --timeout 60000",
+    "ts-test1": "ts-mocha test/dummy.spec.ts --timeout 60000",
+    "ts-test2": "ts-mocha test/auth-helper.spec.ts --timeout 60000",
     "preistanbul": "npm run build",
     "istanbul": "nyc mocha dist/test/**/*.js --timeout 60000 --exit",
     "istanbul1": "nyc mocha dist/test/**/*.js --timeout 60000 --exit",
@@ -81,7 +83,7 @@
     "ts-jest": "29.0.3",
     "ts-loader": "^9.2.3",
     "ts-mocha": "^11.1.0",
-    "ts-node": "^10.9.2",
+    "ts-node": "^10.0.0",
     "tsconfig-paths": "4.1.1",
     "typescript": "^4.7.4"
   }

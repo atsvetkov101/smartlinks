@@ -22,6 +22,7 @@
     , "src/postgres"
     , ".eslintrc.js"
     , "dist/src/entrypoints"
+    , "dist/src/constants"
     , "src/core/chain-of-responsibility"
   ],
   "reporter" : [

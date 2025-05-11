@@ -1,4 +1,4 @@
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import { before, after } from 'node:test';
 import sinon from 'sinon';
 import { AuthHelper } from '../src/core/auth/auth-helper';
