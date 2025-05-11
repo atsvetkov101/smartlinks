@@ -1,0 +1,14 @@
+{
+    "extends": "@istanbuljs/nyc-config-typescript",
+    "all": true,
+    "check-coverage": true,
+    "include": [
+      "src/core/**/*.ts"
+    ],
+    "exclude": ["test", "jest-test", "src/configs", "src/constants"],
+    "output": "./istanbul",
+    "reporter" : [
+        "html",
+        "text"
+    ]
+}

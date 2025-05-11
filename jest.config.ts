@@ -11,10 +11,10 @@ const config: JestConfigWithTsJest = {
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
-  "collectCoverageFrom": [
-    "**/*.(t|j)s"
-  ],
+  "collectCoverage": true,
+  "collectCoverageFrom": ["./src/**/*"],
   "coverageDirectory": "../coverage",
+  "coverageReporters": ["html"],
   "testEnvironment": "node",
   "testTimeout": 60000,
 };
