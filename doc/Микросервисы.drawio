@@ -1,0 +1,47 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.1.1 Chrome/132.0.6834.210 Electron/34.3.3 Safari/537.36" version="26.1.1">
+  <diagram name="Page-1" id="V-TrV8zzOrMmBRvUVCqm">
+    <mxGraphModel dx="1114" dy="849" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="qRCQIiTZ9YN8YQX9SVMj-1" value="микросервис&amp;nbsp; &amp;nbsp;Правил" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="372.02" y="366.27" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="qRCQIiTZ9YN8YQX9SVMj-2" value="" style="endArrow=classic;html=1;rounded=0;entryX=-0.017;entryY=0.629;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;" edge="1" parent="1" target="qRCQIiTZ9YN8YQX9SVMj-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="40" y="334.5" as="sourcePoint" />
+            <mxPoint x="140" y="335" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qRCQIiTZ9YN8YQX9SVMj-3" value="HTTP-запрос" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="qRCQIiTZ9YN8YQX9SVMj-2">
+          <mxGeometry x="-0.3593" y="-3" relative="1" as="geometry">
+            <mxPoint x="19" y="-17" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qRCQIiTZ9YN8YQX9SVMj-4" value="API GATEWAY" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="290" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="qRCQIiTZ9YN8YQX9SVMj-5" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.975;exitY=0.6;exitDx=0;exitDy=0;exitPerimeter=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="qRCQIiTZ9YN8YQX9SVMj-4" target="qRCQIiTZ9YN8YQX9SVMj-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="640" as="sourcePoint" />
+            <mxPoint x="370" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qRCQIiTZ9YN8YQX9SVMj-6" value="REST API" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="qRCQIiTZ9YN8YQX9SVMj-5">
+          <mxGeometry x="0.0675" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qRCQIiTZ9YN8YQX9SVMj-7" value="Хранилище правил" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="600" y="430" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qRCQIiTZ9YN8YQX9SVMj-8" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=45;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=classic;startFill=1;entryPerimeter=0;" edge="1" parent="1" source="qRCQIiTZ9YN8YQX9SVMj-1" target="qRCQIiTZ9YN8YQX9SVMj-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="492.02" y="470" as="sourcePoint" />
+            <mxPoint x="577.02" y="539" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

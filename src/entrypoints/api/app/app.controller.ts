@@ -17,11 +17,6 @@ export class AppController {
 
 	@Get()
 	getHello(): string {
-		// const RuleCommand: ICommand = this.commandFactory.createRuleCommand({test1: 'test1', test2: 'test2'});
-		// this.chain
-		
-		
-
 		return this.appService.getHello();
 	}
 
