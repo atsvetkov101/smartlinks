@@ -2,43 +2,10 @@ import { HttpStatus, Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { JwtService } from '@nestjs/jwt';
 import httpContext from 'express-http-context';
+import { CustomHttpException } from '../../../core/exceptions/custom-http-exception';
 
 const USER_HTTP_CONTEXT = 'user';
 const AVAILABLE_GAME = 'game';
-
-interface IBaseExceptionOptions {
-  originalError?: Error;
-}
-
-interface ICustomHttpExceptionOptions {
-  statusCode?: HttpStatus;
-  originalError?: Error;
-}
-
-abstract class BaseException extends Error { 
-  errorCode: string;
-  error: string;
-  originalError: Error | undefined;
-  protected constructor({ error, errorCode}, options: IBaseExceptionOptions = {}) {
-    super(error);
-    Error.captureStackTrace(this, this.constructor);
-    this.errorCode = errorCode;
-    this.error = error;
-
-    const { originalError = undefined } = options;
-    this.originalError = originalError;
-  }
-}
-
-class CustomHttpException extends BaseException {
-  statusCode: HttpStatus;
-  constructor({ error, errorCode }, options: ICustomHttpExceptionOptions = {}) {
-    const { statusCode = HttpStatus.INTERNAL_SERVER_ERROR, originalError = undefined  } = options;
-    super({ error, errorCode }, { originalError });
-    this.statusCode = statusCode;
-  }
-}
-
 
 @Injectable()
 export class AuthenticationMiddleware implements NestMiddleware {
