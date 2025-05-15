@@ -13,6 +13,8 @@ import { Chain } from '../../../core/chain/chain';
 import { ConditionExecutionHandler } from '../../../core/chain/condition-execution-handler';
 import { RequestProcessingMiddleware } from '../request/request-processing-middleware';
 import { RequestService } from '../../../core/request/request.service';
+import { RequestPreparer } from '../../../core/request/request-preparer';
+import { RequestPreparerImpl } from '../../../core/request/request-preparer-impl';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'default;.super!@321SECRET$$';
 
@@ -29,9 +31,14 @@ const JWT_SECRET = process.env.JWT_SECRET || 'default;.super!@321SECRET$$';
 		, AppUsecases
 		, AuthService
 		, CommandFactory
-	  , Chain
+	    , Chain
 		, ConditionExecutionHandler
-		, RequestService],
+		, RequestService
+		, {
+		  provide: RequestPreparer,
+		  useClass: RequestPreparerImpl,
+		}
+		],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): any {

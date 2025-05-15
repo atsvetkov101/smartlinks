@@ -28,7 +28,7 @@
     "html",
     "text"
   ],
+  "report-dir": "./nyc-coverage",
   "reporter-options": {
-    "dir": "nyc-reports"
   }
 }

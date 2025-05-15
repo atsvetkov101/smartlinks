@@ -24,4 +24,4 @@ DI - 2 балла
 2) написать тесты на RequestProcessingMiddleware
 3) разработать endpoint для resolver
 4) Добавить запуск resolver из docker-compose. Будем использовать единый образ. Связать 
-5)
+-> 5) Реализовать RequestPreparerImpl, написать тесты

@@ -1,15 +1,17 @@
 import { Request } from 'express';
 
-export class MockRequest{
-  url: string;
-  body: any;
-  params: any;
-  query: any;
+const mockRequest: Partial<Request> = {
+  path: '/my-test-path',
+  ip: '192.168.0.1',
+  httpVersion: '1.1',
+  method: 'GET',
+  hostname: 'localhost',
+  url: '/test',
+  headers: {
+    'content-type': 'application/json',
+    'some-header': 'some-value'
+  },
+  query: {name: 'John', age: '30'},
+};
 
-  constructor(body?: any, params?: any, query?: any, url?: string) {
-    this.body = body || {};
-    this.params = params || {};
-    this.query = query || {};
-    this.url = url || '';
-  }
-}
+export default mockRequest;
