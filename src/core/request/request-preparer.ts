@@ -1,9 +1,11 @@
 import { Request, Response } from 'express';
-import { SmartLinkRequest } from './resolver/smart-link-request';
-import { SmartLinkResponse } from './resolver/smart-link-response';
+import { SmartLinkRequest } from '../common/smart-link-request';
+import { SmartLinkResponse } from '../common/smart-link-response';
+import { Injectable } from '@nestjs/common';
 
 // шаблон template method
-abstract class RequestPreparer {
+@Injectable()
+export abstract class RequestPreparer {
   async process(req: Request, res: Response): Promise<void>{
 
     const smartLinkRequest = this.collectParams(req);

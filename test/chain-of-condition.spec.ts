@@ -31,32 +31,4 @@ describe('chain-of-condition tests', () => {
       expect(result).not.to.be.null;
     });
   });
-  /*
-  describe('chain-of-condition tests 1', () => {
-    let chain: Chain;
-    let sandbox: sinon.SinonSandbox;
-    let conditionExecutionHandler;
-    before(() => {
-      sandbox = sinon.createSandbox();
-      sinon.stub(ConditionExecutionHandler.prototype, 'handleCondition').callsFake((conditions)) => {
-        s3FileLink = `http://s3.url.test/${fileLink}`;
-        return s3FileLink;
-      });
-      const loggerService = new LoggerService();
-      conditionExecutionHandler = new ConditionExecutionHandler(loggerService);
-      chain = new Chain(conditionExecutionHandler, loggerService);
-
-    });
-    after(async () => {
-      sandbox.restore();
-    });
-    it.only('chain-of-condition condition test. проверяем, что метод handleCondition был вызван', async () => {
-      const spy = sandbox.spy(conditionExecutionHandler, 'handleCondition');
-
-      const conditions = [1,2,3,4,5,6,7,8,9,10];
-			const result = chain.start(conditions);
-      chai.assert(spy.calledOnce, 'Приватный метод не был вызван');
-    });
-  });
-*/  
 });

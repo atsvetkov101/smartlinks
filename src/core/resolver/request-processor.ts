@@ -1,6 +1,6 @@
 import { LinkRepository } from './link-repository';
-import { SmartLinkRequest } from './smart-link-request';
-import { SmartLinkResponse } from './smart-link-response';
+import { SmartLinkRequest } from '../common/smart-link-request';
+import { SmartLinkResponse } from '../common/smart-link-response';
 
 abstract class RequestResolver {
 
