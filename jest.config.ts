@@ -1,22 +1,13 @@
-import type { JestConfigWithTsJest } from 'ts-jest';
+import type { Config } from 'jest';
 
-const config: JestConfigWithTsJest = {
-  "moduleFileExtensions": [
-    "js",
-    "json",
-    "ts"
-  ],
-  "rootDir": "jest-test",
-  "testRegex": ".*\\.spec\\.ts$",
-  "transform": {
-    "^.+\\.(t|j)s$": "ts-jest"
-  },
-  "collectCoverage": true,
-  "collectCoverageFrom": ["./src/**/*"],
-  "coverageDirectory": "../coverage",
-  "coverageReporters": ["html"],
-  "testEnvironment": "node",
-  "testTimeout": 60000,
+const config: Config = {
+  collectCoverage: true,
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  rootDir: '.',
+  testMatch: ['<rootDir>/jest-test/**/*.spec.ts'],
+  coverageDirectory: '<rootDir>/jest-coverage',
+  collectCoverageFrom: ['src/core/**/*.ts'],
 };
 
 export default config;

@@ -15,6 +15,11 @@ import { RequestProcessingMiddleware } from '../request/request-processing-middl
 import { RequestService } from '../../../core/request/request.service';
 import { RequestPreparer } from '../../../core/request/request-preparer';
 import { RequestPreparerImpl } from '../../../core/request/request-preparer-impl';
+import { ProcessStrategyA } from '../../../core/request/process-strategy-a';
+import { IProcessStrategy } from '../../../core/request/iprocess-strategy';
+import { ProcessStrategy } from '../../../core/request/process-strategy';
+import { ExceptionHandler } from '../../../core/error/exception-handler';
+import { ExceptionHandlerConfig } from '../../../core/error/exception-handler-config';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'default;.super!@321SECRET$$';
 
@@ -37,7 +42,14 @@ const JWT_SECRET = process.env.JWT_SECRET || 'default;.super!@321SECRET$$';
 		, {
 		  provide: RequestPreparer,
 		  useClass: RequestPreparerImpl,
+		},
+		{
+			provide: ProcessStrategy,
+			useClass: ProcessStrategyA,
 		}
+		, ExceptionHandler
+		, ExceptionHandlerConfig
+		, RequestPreparerImpl
 		],
 })
 export class AppModule implements NestModule {
