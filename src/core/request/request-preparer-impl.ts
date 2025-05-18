@@ -8,12 +8,14 @@ import { ProcessStrategy } from "./process-strategy";
 import { LoggerService } from "../../logger/logger.service";
 import { ProcessStrategyB } from "./process-strategy-b";
 import { ProcessStrategyA } from "./process-strategy-a";
+import { ResolverClient } from "../resolver-client/client";
 
 @Injectable()
 export class RequestPreparerImpl extends RequestPreparer {
     private readonly processStrategy:ProcessStrategy;
     constructor(
-        private readonly loggerService: LoggerService
+        private readonly loggerService: LoggerService,
+        private readonly resolverClient: ResolverClient
     ){
         super();
         this.processStrategy = new ProcessStrategyA(
@@ -45,13 +47,7 @@ export class RequestPreparerImpl extends RequestPreparer {
         return res;
     }
     resolveSmartLink(smartLinkRequest: SmartLinkRequest): Promise<SmartLinkResponse> {
-        const res = new SmartLinkResponse();
-        // TODO: обращение к сервису для получения ответа
-        // ... 
-
-        res.set('statusCode', 200);
-        res.set('url', 'https://www.rbc.ru/');
-        return Promise.resolve(res);
+        return this.resolverClient.resolve(smartLinkRequest);
     }
     prepareResponse(smartLinkResponse: SmartLinkResponse, res: Response): void {
         res.redirect(301, smartLinkResponse.get('url'));   

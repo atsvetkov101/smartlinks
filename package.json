@@ -15,9 +15,12 @@
     "db-seed-create": "npx sequelize-cli seed:generate --name",
     "db-seed": "npx sequelize-cli db:seed:all",
     "db-seed-down": "npx sequelize-cli db:seed:undo",
-    "prestart:api:dev": "nest start --entryFile src/entrypoints/api/main --watch",
-    "start:api:dev": "yarn start build",
+    "prestart:api:dev": "npm run build",
+    "start:api:dev": "nest start --entryFile src/entrypoints/api/main --watch",
     "start:api:production": "node dist/src/entrypoints/api/main",
+    "prestart:resolver:dev": "npm run build",
+    "start:resolver:dev": "nest start --entryFile src/entrypoints/resolver/main --watch",
+    "start:resolver:production": "node dist/src/entrypoints/resolver/main",
     "start-test1": "node dist/src/core/chain-of-responsibility/chain-of-responsibility-concept",
     "pretest": "npm run build",
     "test-mocha": "mocha dist/test/**/*.spec.js --timeout 60000 --exit",
@@ -34,6 +37,7 @@
     "docker-build": "sudo docker build -t smartlink ."
   },
   "dependencies": {
+    "@nestjs/axios": "^4.0.0",
     "@nestjs/common": "^11.0.1",
     "@nestjs/config": "^4.0.0",
     "@nestjs/core": "^11.0.1",
@@ -41,7 +45,7 @@
     "@nestjs/microservices": "^11.0.9",
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/schedule": "^5.0.1",
-    "@nestjs/sequelize": "^11.0.0",
+    "@nestjs/sequelize": "^10.0.1",
     "@nestjs/terminus": "^11.0.0",
     "@nestjs/testing": "^11.1.0",
     "@types/chai": "^5.2.2",
@@ -54,9 +58,11 @@
     "dotenv": "^16.4.7",
     "express-http-context": "^1.2.4",
     "moment": "^2.30.1",
+    "pg": "^8.16.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
-    "sequelize": "^6.37.5"
+    "sequelize": "^6.37.5",
+    "sequelize-typescript": "^2.1.6"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.2",

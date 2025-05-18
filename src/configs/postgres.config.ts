@@ -14,7 +14,7 @@ export const getPostgresConfig = (): SequelizeModuleAsyncOptions => ({
 		autoLoadModels: true, // чтоб не перечислять все модели models: [...],
 		logging: SEQ_LOGGING,
 		logQueryParameters: SEQ_LOG_QUERY_PARAMETERS,
-		synchronize: false, // не пытаться по моделям создавать отсутствующие таблицы в БД
+		synchronize: true, // будем по моделям создавать отсутствующие таблицы в БД
 		protocol: 'postgres',
 		dialectOptions: {
 			ssl: (SEQ_SSL_ENABLED) ? {

@@ -1,15 +1,15 @@
-import { LinkRepository } from './link-repository';
 import { SmartLinkRequest } from '../common/smart-link-request';
 import { SmartLinkResponse } from '../common/smart-link-response';
+import { PathRulesRepository } from '../../database/path-rules/path-rules.repositry';
 
-abstract class RequestResolver {
+export abstract class RequestResolver {
 
-  constructor(private linkRepository: LinkRepository) {}
+  constructor() {}
 
   async resolve(req: SmartLinkRequest): Promise<SmartLinkResponse>{
     const path = this.getPath(req);
 
-    const rules: Rule[] = await this.linkRepository.findOne(path);
+    const rules: Rule[] = this.findRules(path);
 
     const rule = this.chooseRule(rules);
 
@@ -22,4 +22,5 @@ abstract class RequestResolver {
   
   abstract getResponse(rule: Rule): Promise<SmartLinkResponse>;
 
+  abstract findRules(path: string): Rule[];
 }

@@ -19,6 +19,17 @@ DI - 2 балла
 6. Описаны проблемы сложности, характерные для проекта и способы их решения - 1 балл
 
 
+## Команда для сборки образа 
+$ docker build -t smartlink .
+
+## Команда для запуска контейнеров 
+$ docker-compose up -d
+
+
+
+
+
+
 Задачи, которые нужно сделать:
 +1) убрать authMiddleware создать RequestProcessingMiddleware
 2) написать тесты на RequestProcessingMiddleware
