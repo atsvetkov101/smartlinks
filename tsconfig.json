@@ -42,4 +42,5 @@
     "test/**/*", "jest-test/**/*",
   ],
   "exclude": ["node_modules", "dist", "src/database"],
+  "typeRoots": ["./node_modules/@types"]
 }

@@ -7,7 +7,7 @@ export class AppService {
 
 	getHello(): string {
 		this.loggerService.log('invoked method getHello()');
-		return 'API: Hello World!';
+		return 'Resolver: Hello World!';
 	}
 
 	testRequest(): Promise<any>{

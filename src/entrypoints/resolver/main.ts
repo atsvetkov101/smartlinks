@@ -6,7 +6,6 @@ import { LoggerService } from '../../logger/logger.service';
 
 import { AppModule } from './app/app.module';
 import { getHttpContextConfig } from '../../configs/http-context.config';
-import { AuthenticationMiddleware } from './auth/auth.middleware';
 
 const PORT = 3000;
 
@@ -31,6 +30,6 @@ async function bootstrap() {
 	const port = process.env.PORT || PORT;
 	await app.listen(port);
 
-	logger.log(`API listening on http://localhost:${port}`);
+	logger.log(`Resolver listening on http://localhost:${port}`);
 }
 bootstrap();

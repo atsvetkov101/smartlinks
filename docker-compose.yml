@@ -1,5 +1,19 @@
 version: "3"
 services:
+  
+  db:
+    image: postgres
+    tmpfs:
+      - /tmp
+      - /var/run/postgresql
+    volumes:
+      - ./docker_postgres_data:/var/lib/postgresql/data
+      - ./postgres-initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
 
   api:
     image: smartlink:latest
@@ -9,7 +23,20 @@ services:
     ports:
       - "127.0.0.1:5000:5000"
     command: node dist/src/entrypoints/api/main
+    depends_on:
+      - db
+      - resolver
 
+  resolver:
+    image: smartlink:latest
+    volumes: []
+    environment:
+      - PORT=6000
+    ports:
+      - "127.0.0.1:6000:6000"
+    command: node dist/src/entrypoints/resolver/main
+    depends_on:
+      - db
 
 
   
