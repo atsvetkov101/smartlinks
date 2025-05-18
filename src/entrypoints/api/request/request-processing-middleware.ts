@@ -19,12 +19,12 @@ export class RequestProcessingMiddleware implements NestMiddleware {
     } catch (err: any) {
       throw new CustomHttpException(
         {
-          errorCode: 'InvalidToken',
-          error: 'Invalid Token',
+          errorCode: 'Неизвестная ошибка',
+          error: 'Неизвестная ошибка',
         },
-        { statusCode: HttpStatus.UNAUTHORIZED },
+        { statusCode: HttpStatus.INTERNAL_SERVER_ERROR },
       );
     }
-    next();
+    // next(); 
   }
 }
