@@ -20,6 +20,9 @@ import { IProcessStrategy } from '../../../core/request/iprocess-strategy';
 import { ProcessStrategy } from '../../../core/request/process-strategy';
 import { ExceptionHandler } from '../../../core/error/exception-handler';
 import { ExceptionHandlerConfig } from '../../../core/error/exception-handler-config';
+import { ResolverClient } from '../../../core/resolver-client/client';
+// import { HttpService } from '@nestjs/axios';
+import { HttpModule } from '@nestjs/axios';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'default;.super!@321SECRET$$';
 
@@ -29,6 +32,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'default;.super!@321SECRET$$';
 			global: true,
 			secret: JWT_SECRET,
 		}),
+		HttpModule
 	],
 	controllers: [AppController],
 	providers: [AppService
@@ -50,6 +54,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'default;.super!@321SECRET$$';
 		, ExceptionHandler
 		, ExceptionHandlerConfig
 		, RequestPreparerImpl
+		, ResolverClient
 		],
 })
 export class AppModule implements NestModule {

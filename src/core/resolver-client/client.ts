@@ -39,6 +39,9 @@ export class ResolverClient {
      this.loggerService.log(
       `Получен ответ на '/api/v1/resolve' (микросервис resolver): ${JSON.stringify(res)}`,
     );
-    return res;
+    const response = new SmartLinkResponse();
+    // TODO: заполнить response
+    // ...
+    return Promise.resolve(response);
   }
 }
