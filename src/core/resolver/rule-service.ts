@@ -7,12 +7,12 @@ import { PathRulesRepository } from "../../database/path-rules/path-rules.reposi
 export class RuleService {
 	constructor(
 		private readonly pathRulesRepository: PathRulesRepository,
-		private readonly logger: LoggerService,
+		private readonly loggerService: LoggerService,
 	) {
   }
 
 	async resolve(data: PathInfoDTO): Promise<any>{
-
+    this.loggerService.log('invoked method resolve()');
 		const rulesInfo = await this.pathRulesRepository.findRules(data.path);
 		if(!rulesInfo || !rulesInfo.rules){
 			return Promise.resolve(null);

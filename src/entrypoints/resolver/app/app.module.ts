@@ -24,12 +24,15 @@ import { PathRulesMapper } from '../../../database/path-rules/path-rules.mapper'
 import { SequelizeModule } from '@nestjs/sequelize';
 import { PathRulesModel } from '../../../database/path-rules/path-rules.model';
 import { getPostgresConfig } from '../../../configs/postgres.config';
+import { HttpModule } from '@nestjs/axios';
+import { ResolverClient } from '../../../core/resolver-client/client';
 
 @Module({
 	imports: [
 		LoggerModule,
 		SequelizeModule.forRootAsync(getPostgresConfig()),
 		SequelizeModule.forFeature([PathRulesModel]),
+		HttpModule
 	],
 	controllers: [AppController],
 	providers: [AppService
@@ -52,6 +55,7 @@ import { getPostgresConfig } from '../../../configs/postgres.config';
 		, ExceptionHandler
 		, ExceptionHandlerConfig
 		, RequestPreparerImpl
+		, ResolverClient
 		],
 })
 export class AppModule {}
