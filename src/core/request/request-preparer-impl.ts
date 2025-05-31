@@ -9,6 +9,7 @@ import { LoggerService } from "../../logger/logger.service";
 import { ProcessStrategyB } from "./process-strategy-b";
 import { ProcessStrategyA } from "./process-strategy-a";
 import { ResolverClient } from "../resolver-client/client";
+import { SmartLinkRequestBuilder } from "../common/smart-link-request-builder";
 
 @Injectable()
 export class RequestPreparerImpl extends RequestPreparer {
@@ -25,31 +26,28 @@ export class RequestPreparerImpl extends RequestPreparer {
     }
     async process(req: Request, res: Response): Promise<void> {
         return this.processStrategy.process(req, res);
-        /*
-        const smartLinkRequest = this.collectParams(req);
-        // Обращение к микросервису resolver
-        const smartLinkResponse = await this.resolveSmartLink(smartLinkRequest);
-        this.prepareResponse(smartLinkResponse, res);
-        return Promise.resolve();
-        */
     }
     collectParams(req: Request): SmartLinkRequest {
-        const res = new SmartLinkRequest();
-        res.set('path', req.path);
-        res.set('ip', req.ip);
-        res.set('httpVersion', req.httpVersion);
-        res.set('method', req.method);
-        res.set('hostname', req.hostname);
-        res.set('url', req.url);
-        res.set('headers', req.headers);
-        res.set('query', req.query);
-        res.set('requestTimestamp', (new Date()).toISOString());
+        const builder = new SmartLinkRequestBuilder();
+
+        const res = builder
+        .append('path', req.path)
+        .append('ip', req.ip)
+        .append('httpVersion', req.httpVersion)
+        .append('method', req.method)
+        .append('hostname', req.hostname)
+        .append('url', req.url)
+        .appendHeaders(req.headers)
+        .append('query', req.query)
+        .appendDateIfNeeded()
+        .build();
+
         return res;
     }
     resolveSmartLink(smartLinkRequest: SmartLinkRequest): Promise<SmartLinkResponse> {
         return this.resolverClient.resolve(smartLinkRequest);
     }
     prepareResponse(smartLinkResponse: SmartLinkResponse, res: Response): void {
-        res.redirect(301, smartLinkResponse.get('url'));   
+        res.redirect(smartLinkResponse.status, smartLinkResponse.url);
     }
 }

@@ -9,24 +9,24 @@ import { LoggerService } from '../../src/logger/logger.service';
 import { CommandFactory } from '../../src/core/command-factory';
 import { Chain } from '../../src/core/chain/chain';
 import { ConditionExecutionHandler } from '../../src/core/chain/condition-execution-handler';
+import { BaseConditionExecutionHandler } from '../../src/core/chain/base-condition-execution-handler';
+import { createTestingModule } from './test-helper';
 
 const JWT_SECRET = 'JWT_SECRET';
 
+/**
+* Тестирует функциональность аутентификации API (метод login).
+* Проверяет успешный и неуспешный сценарии логина с использованием JWT-токенов.
+*
+* Тест suite:
+* 1. Успешная аутентификация: проверка получения JWT-токена при корректных логине и пароле.
+* 2. Неуспешная аутентификация: проверка поведения при передаче ошибочного пароля.
+*/
 describe('ApiLogin', () => {
   let app: TestingModule;
   beforeAll(async () => {
-    app = await Test.createTestingModule({
-      imports: [LoggerModule,
-        JwtModule.register({
-          global: true,
-          secret: JWT_SECRET,
-        }),
-      ],
-      controllers: [AppController],
-      providers: [AppService, LoggerService, AppUsecases, AuthService, Chain, CommandFactory, ConditionExecutionHandler],
-    }).compile();
+    app = await createTestingModule();
   });
-
   afterAll(async () => {
     jest.clearAllMocks();
   });

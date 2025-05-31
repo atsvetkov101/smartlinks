@@ -26,6 +26,10 @@ import { PathRulesModel } from '../../../database/path-rules/path-rules.model';
 import { getPostgresConfig } from '../../../configs/postgres.config';
 import { HttpModule } from '@nestjs/axios';
 import { ResolverClient } from '../../../core/resolver-client/client';
+import { RequestResolver } from '../../../core/resolver/request-resolver';
+import { RequestResolverImpl } from '../../../core/resolver/request-resolver-impl';
+import { ConditionDictionary } from '../../../core/conditions/condition-dictionary';
+import { RequestMapper } from '../../../core/resolver/request.mapper';
 
 @Module({
 	imports: [
@@ -41,6 +45,7 @@ import { ResolverClient } from '../../../core/resolver-client/client';
 		, CommandFactory
 	    , Chain
 		, ConditionExecutionHandler
+		, RequestMapper
 		, RuleService
 		, PathRulesRepository
 		, PathRulesMapper
@@ -56,6 +61,11 @@ import { ResolverClient } from '../../../core/resolver-client/client';
 		, ExceptionHandlerConfig
 		, RequestPreparerImpl
 		, ResolverClient
+		, ConditionDictionary
+		,  {
+		  provide: RequestResolver,
+		  useClass: RequestResolverImpl,
+		},
 		],
 })
 export class AppModule {}
