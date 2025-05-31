@@ -16,5 +16,5 @@ jobs:
         run: yarn install
       - run: npm run build
       - run: npm run test-jest
-      - run: npm run test-coverage
+      - run: npm run test-jest-coverage
 
