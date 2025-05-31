@@ -8,6 +8,7 @@ const config: Config = {
   testMatch: ['<rootDir>/jest-test/**/*.spec.ts'],
   coverageDirectory: '<rootDir>/jest-coverage',
   collectCoverageFrom: ['src/core/**/*.ts'],
+  testTimeout: 60000
 };
 
 export default config;

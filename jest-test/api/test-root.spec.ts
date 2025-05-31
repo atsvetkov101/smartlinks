@@ -9,6 +9,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { CommandFactory } from '../../src/core/command-factory';
 import { Chain } from '../../src/core/chain/chain';
 import { ConditionExecutionHandler } from '../../src/core/chain/condition-execution-handler';
+import { createTestingModule } from './test-helper';
 
 const JWT_SECRET = 'JWT_SECRET';
 
@@ -17,17 +18,7 @@ describe('AppController', () => {
   let appService: AppService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      imports: [LoggerModule,
-        JwtModule.register({
-          global: true,
-          secret: JWT_SECRET,
-        }),
-      ],
-      controllers: [AppController],
-      providers: [AppService, LoggerService, AppUsecases, AuthService, Chain, CommandFactory, ConditionExecutionHandler],
-    }).compile();
-
+    const module: TestingModule = await createTestingModule();
     appController = module.get<AppController>(AppController);
     appService = module.get<AppService>(AppService);
   });

@@ -6,10 +6,11 @@ export abstract class RequestResolver {
 
   constructor() {}
 
+  // Template Method pattern
   async resolve(req: SmartLinkRequest): Promise<SmartLinkResponse>{
     const path = this.getPath(req);
 
-    const rules: Rule[] = this.findRules(path);
+    const rules: any[] = await this.findRules(path);
 
     const rule = this.chooseRule(rules);
 
@@ -18,9 +19,9 @@ export abstract class RequestResolver {
 
   abstract getPath(req: SmartLinkRequest);
 
+  abstract findRules(path: string):  Promise<any[]>;
+
   abstract chooseRule(rules: Rule[]): Rule;
   
   abstract getResponse(rule: Rule): Promise<SmartLinkResponse>;
-
-  abstract findRules(path: string): Rule[];
 }

@@ -6,6 +6,7 @@ import { LoggerService } from '../../logger/logger.service';
 
 import { AppModule } from './app/app.module';
 import { getHttpContextConfig } from '../../configs/http-context.config';
+import * as express from 'express';
 
 const PORT = 3000;
 
@@ -20,7 +21,7 @@ async function bootstrap() {
 
 	app.useGlobalPipes(
 		new ValidationPipe({
-			whitelist: true,
+			whitelist: false,
 			transform: true,
 			transformOptions: {
 				enableImplicitConversion: true,
