@@ -1,6 +1,6 @@
 INSERT INTO public.path_rules
 ("path", rules)
-VALUES('test1', '{"rules": [{"url": "www.rbc.ru", "path": "test1", "conditions": [{"id": "CheckDateAfter", "After": "2025-05-20"}]}, {"url": "www.yandex.ru", "path": "test1", "conditions": [{"id": "CheckDateBetween", "After": "2025-05-01", "Before": "2025-05-20"}]}]}'::jsonb);
+VALUES('test2', '{"rules": [{"url": "mail.yandex.ru", "path": "test2", "conditions": [{"id": "CheckUserAgentIncludes", "Includes": "postman"}]}, {"url": "translate.google.com", "path": "test2", "conditions": [{"id": "CheckDateBetween", "After": "2025-05-01", "Before": "2025-05-20"}]}]}'::jsonb);
 INSERT INTO public.path_rules
 ("path", rules)
-VALUES('test2', '{"rules": [{"url": "mail.yandex.ru", "path": "test2", "conditions": [{"id": "CheckUserAgentIncludes", "Includes": "postman"}]}, {"url": "translate.google.com", "path": "test2", "conditions": [{"id": "CheckDateBetween", "After": "2025-05-01", "Before": "2025-05-20"}]}]}'::jsonb);
+VALUES('test1', '{"rules": [{"url": "www.rbc.ru", "path": "test1", "conditions": [{"id": "CheckDateAfter", "After": "2025-05-20"}]}, {"url": "www.yandex.ru", "path": "test1", "conditions": [{"id": "CheckDateBetween", "After": "2025-05-01", "Before": "2025-05-20"}]}]}'::jsonb);

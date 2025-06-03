@@ -25,6 +25,8 @@ export class ConditionExecutionHandler extends BaseConditionExecutionHandler imp
     const condition = conditions.shift();
     this.loggerService.log(`Обрабатываем условие ${JSON.stringify(condition)}`);
     const result = this.handleCondition(condition);
+    
+    this.loggerService.log(`${result===true ? 'Соответствие условию найдено: ': ''}Результат:${result} Обрабатываем условие ${JSON.stringify(condition)}`);
     if (result) {
       return this.handle(conditions);
     } else {

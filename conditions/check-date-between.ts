@@ -6,20 +6,26 @@ export class Condition {
     public static getConditionName(){
       return 'CheckDateBetween';
     }
-    public getConditionResult() {
+    public getConditionResult(): boolean {
       const requestTimestamp = this.input['Date'];
+      console.log(`CheckDateBetween: requestTimestamp:${requestTimestamp}`);
       if(!requestTimestamp){
         return false;
       }
-      const before = this.condition['Before'];
+      const date = new Date(requestTimestamp);
+      console.log(`CheckDateBetween: date:${date}`);
+      if(!date){
+        return false;
+      }
+      const before = new Date(this.condition['Before']);
       if(!before){
         return false;
       }
-      const after = this.condition['After'];
+      const after = new Date(this.condition['After']);
       if(!after){
         return false;
       }
 
-      return requestTimestamp > after && requestTimestamp < before;
+      return date > after && date < before;
     }
 }
