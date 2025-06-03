@@ -30,6 +30,7 @@ import { RequestResolver } from '../../../core/resolver/request-resolver';
 import { RequestResolverImpl } from '../../../core/resolver/request-resolver-impl';
 import { ConditionDictionary } from '../../../core/conditions/condition-dictionary';
 import { RequestMapper } from '../../../core/resolver/request.mapper';
+import { BaseConditionExecutionHandler } from '../../../core/chain/base-condition-execution-handler';
 
 @Module({
 	imports: [
@@ -66,6 +67,10 @@ import { RequestMapper } from '../../../core/resolver/request.mapper';
 		  provide: RequestResolver,
 		  useClass: RequestResolverImpl,
 		},
+		{
+			provide: BaseConditionExecutionHandler,
+			useClass: ConditionExecutionHandler,
+		}
 		],
 })
 export class AppModule {}

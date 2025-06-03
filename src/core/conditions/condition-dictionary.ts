@@ -21,7 +21,10 @@ export class ConditionDictionary{
   
   async init(){
     try{
-      this.rawConditions = await getFiles(this.conditionDirectory);
+      if(!this.rawConditions){
+        this.rawConditions = await getFiles(this.conditionDirectory);
+        this.compileConditions();
+      }
     }catch(e){
       console.log(e);
     }

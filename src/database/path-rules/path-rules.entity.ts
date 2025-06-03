@@ -4,10 +4,10 @@ import { IPathRules } from './path-rules.interface';
 
 export class PathRulesEntity {
 	path: string;
-	rules: string;
-
-	constructor(obj: IPathRules) {
-		this.path = obj.path;
-		this.rules = obj.rules;
+	rules: Array<object>;
+	
+	constructor({path, rules}) {
+		this.path = path;
+		this.rules = rules;
 	}
 }

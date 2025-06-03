@@ -9,8 +9,9 @@ export class PathRulesMapper {
       path, rules
     } = model;
 
+    const rulesArray = rules['rules'] as Array<object>;
     return new PathRulesEntity({
-      path, rules
+      path, rules: rulesArray
     });
   }
 }

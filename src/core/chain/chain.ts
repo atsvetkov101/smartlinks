@@ -4,14 +4,30 @@ import { LoggerService } from "../../logger/logger.service";
 import { ICondition } from "../interfaces/icondition";
 import { BaseConditionExecutionHandler } from "./base-condition-execution-handler";
 
-@Injectable()
+
 export class Chain {
+  conditions: ICondition[] = [];
   constructor(
     private readonly conditionExecutionHandler: BaseConditionExecutionHandler,
     private readonly loggerService: LoggerService,
   ) {}
 
-  start(conditions: ICondition[]): boolean {
-    return this.conditionExecutionHandler.handle(conditions);
+  pushCondition(condition: ICondition): void {
+    this.conditions.push(condition);
+  }
+
+  /**
+   * Запускааем цепочку условий
+   * @param conditions - цепочка условий. Если null, то используется внутренняя цепочка для обработки
+   * @returns boolean - результат обработки цепочки условий
+   */
+  start(conditions: ICondition[] | null): boolean {
+    const conditionsToHandle = conditions ? conditions : this.conditions;
+    // Если условий нет, то считаем, что все условия пройдены. возвращаем true
+    if(conditionsToHandle.length === 0){
+      return true;
+    } 
+    this.loggerService.log(`Starting chain with ${conditionsToHandle.length} conditions`)
+    return this.conditionExecutionHandler.handle(conditionsToHandle);
   }
 }
