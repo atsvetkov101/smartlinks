@@ -7,6 +7,7 @@ import { LoggerService } from '../../logger/logger.service';
 import { AppModule } from './app/app.module';
 import { getHttpContextConfig } from '../../configs/http-context.config';
 import { AuthenticationMiddleware } from './auth/auth.middleware';
+import { WebServerExceptionsFilter } from '../../filters/web-server-exceptions-filter';
 
 const PORT = 3000;
 
@@ -18,7 +19,7 @@ async function bootstrap() {
 	app.use(httpContext.middleware);
 
 	app.use(getHttpContextConfig());
-
+  app.useGlobalFilters(new WebServerExceptionsFilter());
 	app.useGlobalPipes(
 		new ValidationPipe({
 			whitelist: true,

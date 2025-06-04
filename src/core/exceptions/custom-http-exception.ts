@@ -9,4 +9,8 @@ export class CustomHttpException extends BaseException {
     super({ error, errorCode }, { originalError });
     this.statusCode = statusCode;
   }
+
+  getStatus(): HttpStatus {
+    return this.statusCode;
+  }
 }

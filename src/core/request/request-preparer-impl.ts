@@ -30,8 +30,9 @@ export class RequestPreparerImpl extends RequestPreparer {
     collectParams(req: Request): SmartLinkRequest {
         const builder = new SmartLinkRequestBuilder();
 
+        const path = req.path.replace(/^\/+|\/+$/g, ""); // Удаляем все слеши в начале и в конце строки
         const res = builder
-        .append('path', req.path)
+        .append('path', path)
         .append('ip', req.ip)
         .append('httpVersion', req.httpVersion)
         .append('method', req.method)
@@ -48,6 +49,7 @@ export class RequestPreparerImpl extends RequestPreparer {
         return this.resolverClient.resolve(smartLinkRequest);
     }
     prepareResponse(smartLinkResponse: SmartLinkResponse, res: Response): void {
-        res.redirect(smartLinkResponse.status, smartLinkResponse.url);
+        this.loggerService.log(`prepareResponse: Redirecting to ${smartLinkResponse.url} with status ${smartLinkResponse.status}`);
+        res.redirect(Number(smartLinkResponse.status), smartLinkResponse.url);
     }
 }
