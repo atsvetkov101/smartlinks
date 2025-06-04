@@ -17,6 +17,8 @@ export class RequestProcessingMiddleware implements NestMiddleware {
       this.loggerService.log(`Processing path: ${req.url}`);
       await this.requestService.process(req, res);
     } catch (err: any) {
+      this.loggerService.error(`RequestProcessingMiddleware: ${err.message}`);
+     
       throw new CustomHttpException(
         {
           errorCode: 'Неизвестная ошибка',
@@ -24,6 +26,7 @@ export class RequestProcessingMiddleware implements NestMiddleware {
         },
         { statusCode: HttpStatus.INTERNAL_SERVER_ERROR },
       );
+     
     }
     // next(); 
   }

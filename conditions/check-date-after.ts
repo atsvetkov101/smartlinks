@@ -7,14 +7,20 @@ export class Condition {
       return 'CheckDateAfter';
     }
     public getConditionResult() {
-      const requestTimestamp = this.input['Date'];
-      if(!requestTimestamp){
+      const date = this.input['date'];
+      console.log(`CheckDateAfter: date:${date}`);
+      if(!date){
         return false;
       }
+      const dtDate = new Date(date);
+      console.log(`CheckDateAfter: dtDate:${dtDate}`);
       const after = this.condition['After'];
+      console.log(`CheckDateAfter: after:${after}`);
       if(!after){
         return false;
       }
-      return requestTimestamp > after;
+      const dtAfter = new Date(after);
+      console.log(`CheckDateAfter: dtAfter:${dtAfter}`);
+      return dtDate > dtAfter;
     }
 }

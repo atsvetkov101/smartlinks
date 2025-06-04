@@ -20,6 +20,7 @@ services:
     volumes: []
     environment:
       - PORT=5000
+      - MS_RESOLVER_URL:http://resolver:6000
     ports:
       - "127.0.0.1:5000:5000"
     command: node dist/src/entrypoints/api/main
@@ -32,6 +33,7 @@ services:
     volumes: []
     environment:
       - PORT=6000
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/smartlinks
     ports:
       - "127.0.0.1:6000:6000"
     command: node dist/src/entrypoints/resolver/main

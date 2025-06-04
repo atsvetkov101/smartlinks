@@ -13,4 +13,13 @@ export abstract class BaseException extends Error {
     const { originalError = undefined } = options;
     this.originalError = originalError;
   }
+  getOriginalError(): Error | undefined {
+    return this.originalError;
+  }
+  getErrorCode(): string {
+    return this.errorCode;
+  }
+  getError(): string {
+    return this.error;
+  }
 }

@@ -22,7 +22,7 @@ export class RequestResolverImpl extends RequestResolver {
   }
 
   getPath(req: SmartLinkRequest){
-    return req.get('path');
+    return req.get('data')['path'];
   }
 
   override async findRules(path: string): Promise<PathRulesEntity>{
@@ -31,11 +31,7 @@ export class RequestResolverImpl extends RequestResolver {
 		if(!rulesInfo || !rulesInfo.rules){
 			return Promise.resolve(null);
 		}
-    /*
-		if(rulesInfo.rules.hasOwnProperty('rules') && rulesInfo.rules.rules.length === 0){
-			return Promise.resolve(null);
-		}
-      */
+
     return Promise.resolve(rulesInfo);
   }
 

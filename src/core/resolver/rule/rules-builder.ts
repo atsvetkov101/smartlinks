@@ -7,6 +7,7 @@ import { Rule } from "./rule";
 import { ConditionExecutionHandler } from "../../chain/condition-execution-handler";
 import { LoggerService } from "../../../logger/logger.service";
 import { Chain } from "../../chain/chain";
+import { CustomHttpException } from "../../exceptions/custom-http-exception";
 
 type FuncConstructor = (...args: any[]) => void;
 
@@ -24,27 +25,38 @@ export class RulesBuilder{
   }
 
   append(ruleEntity: object, input: SmartLinkRequest): RulesBuilder{
+    try{
+      const conditionExecutionHandler = new ConditionExecutionHandler(this.loggerService);
 
-    const conditionExecutionHandler = new ConditionExecutionHandler(this.loggerService);
+      const rule = new Rule(this.loggerService);
+      rule.init(ruleEntity['url'], input['data']);
+      const chain:Chain = rule.getConditionChain();
 
-    const rule = new Rule(this.loggerService);
-    rule.init(ruleEntity['url'], input['data']);
-    const chain:Chain = rule.getConditionChain();
-
-    if(!ruleEntity.hasOwnProperty('conditions')){
-      throw new Error('Rule must have conditions');
+      if(!ruleEntity.hasOwnProperty('conditions')){
+        throw new Error('Rule must have conditions');
+      }
+      this.fillTheChain(ruleEntity, input, chain);
+    
+      this.rules.push(rule);  
+    } catch(error: any){
+      this.loggerService.error(`RulesBuilder.append(...): Ошибка '${error.message}' ${error?.stack}`);
     }
-    for(const condition of ruleEntity['conditions']){
-      const conditionId = condition['id'];
-      const ClsCondition = this.conditionDictionary.getCondition(conditionId) as FuncConstructor;
-      
-      const instanceCondition = new ClsCondition(input['data'], condition);
-      chain.pushCondition(instanceCondition);
-    }
-   
-    this.rules.push(rule);  
-  
     return this;
+  }
+
+  private fillTheChain(ruleEntity: object, input: SmartLinkRequest, chain: Chain) {
+    let conditionId;
+    for (const condition of ruleEntity['conditions']) {
+      try {
+      conditionId = condition['id'];
+      const ClsCondition = this.conditionDictionary.getCondition(conditionId) as FuncConstructor;
+
+      const instanceCondition = new ClsCondition(input['data']['data'], condition);
+      chain.pushCondition(instanceCondition);
+      } catch(error: any){
+        throw new Error(`conditionId='${conditionId || ''}' Ошибка '${error.message}' ${error?.stack}`);
+      }
+    }
   }
 
   build(){

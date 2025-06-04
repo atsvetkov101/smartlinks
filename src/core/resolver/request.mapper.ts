@@ -11,7 +11,6 @@ export class RequestMapper {
 
     for (const key in data) {
         if (data.hasOwnProperty(key)) {
-            // smartLinkRequest[key] = data[key];
             smartLinkRequest.set(key, data[key]);
         }
     }

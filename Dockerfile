@@ -5,6 +5,7 @@ COPY ./src ./src
 COPY ./package.json ./package.json
 COPY ./yarn.lock ./yarn.lock
 COPY ./tsconfig.json ./tsconfig.json
+COPY ./conditions ./conditions
 RUN yarn install --frozen-lockfile --ignore-scripts --ignore-engines && \
   yarn global add @nestjs/cli --ignore-engines && \
   yarn build
@@ -26,6 +27,7 @@ RUN addgroup -g "$GID" non-root && \
   adduser -u "$UID" -G non-root -s /bin/sh -D non-root && \
   chown -R "$UID":"$GID" /usr/src/app
 COPY --from=build /usr/src/app/dist ./dist
+COPY --from=build /usr/src/app/conditions ./conditions
 COPY --from=dependencies /usr/src/app/package.json ./package.json
 COPY --from=dependencies /usr/src/app/node_modules ./node_modules
 USER $UID

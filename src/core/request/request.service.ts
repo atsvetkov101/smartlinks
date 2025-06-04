@@ -15,11 +15,7 @@ export class RequestService {
 
   async process(req: Request, res: Response): Promise<void> {
     this.loggerService.log(`Start processing path: ${req.url}`);
-    try{
-      await this.requestPreparer.process(req, res);
-    }catch(error: any){
-      this.exceptionHandler.handle(error);
-    }
+    await this.requestPreparer.process(req, res);
     return Promise.resolve();
   }
 }
