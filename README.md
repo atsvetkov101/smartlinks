@@ -43,7 +43,7 @@ $ yarn run build
 $ yarn run start:api:dev
 
 ## Команда для запуска resolver на локальном порту 6000
-$ yarn run start:api:dev
+$ yarn run start:resolver:dev
 
 
 Для проверки работы системы откройте ссылку в браузере:
