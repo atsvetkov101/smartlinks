@@ -24,6 +24,12 @@ export class RulesBuilder{
     await this.conditionDictionary.init();
   }
 
+  appendRules(ruleEntities: object[]){
+    for(const rule of ruleEntities){
+      this.append(rule, this.smartLinkRequest);
+    }
+  }
+
   append(ruleEntity: object, input: SmartLinkRequest): RulesBuilder{
     try{
       const conditionExecutionHandler = new ConditionExecutionHandler(this.loggerService);
@@ -50,7 +56,7 @@ export class RulesBuilder{
       try {
       conditionId = condition['id'];
       const ClsCondition = this.conditionDictionary.getCondition(conditionId) as FuncConstructor;
-
+        
       const instanceCondition = new ClsCondition(input['data']['data'], condition);
       chain.pushCondition(instanceCondition);
       } catch(error: any){

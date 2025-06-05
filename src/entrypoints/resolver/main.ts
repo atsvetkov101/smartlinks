@@ -17,9 +17,9 @@ async function bootstrap() {
 	const logger = await app.resolve(LoggerService);
 
 	app.use(httpContext.middleware);
-	app.useGlobalFilters(new ExceptionsFilter());
+	
 	app.use(getHttpContextConfig());
-
+  app.useGlobalFilters(new ExceptionsFilter());
 	app.useGlobalPipes(
 		new ValidationPipe({
 			whitelist: false,

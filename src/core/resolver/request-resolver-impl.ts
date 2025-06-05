@@ -62,7 +62,6 @@ export class RequestResolverImpl extends RequestResolver {
   }
   
   getResponse(rule: ResponseInfo): Promise<SmartLinkResponse>{
-    // TODO: сформировать ответ
     const smartLinkResponse = new SmartLinkResponse();
     smartLinkResponse.url = rule.url;
     return Promise.resolve(smartLinkResponse);

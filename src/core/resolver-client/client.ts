@@ -37,17 +37,12 @@ export class ResolverClient {
 				});
     const res = await firstValueFrom(observableRes);
     const all = res['data']['data'];
-    /*
-     this.loggerService.log(
-      `Получен ответ на '/api/v1/resolve' (микросервис resolver): ${JSON.stringify(res)}`,
-    );
-    */
+
     const response = new SmartLinkResponse();
-    // TODO: заполнить response
-    // ...
+
     if(all['url']){
       response.url = all['url'];
-      response.status = 301;
+      response.status = 302;
     }
     
     return Promise.resolve(response);

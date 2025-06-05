@@ -17,7 +17,7 @@ export class RequestProcessingMiddleware implements NestMiddleware {
       this.loggerService.log(`Processing path: ${req.url}`);
       await this.requestService.process(req, res);
     } catch (err: any) {
-      this.loggerService.error(`RequestProcessingMiddleware: ${err.message}`);
+      this.loggerService.error(`RequestProcessingMiddleware: ${err.message} ${JSON.stringify(err)}`);
      
       throw new CustomHttpException(
         {
