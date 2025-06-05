@@ -35,7 +35,7 @@
     "test": "jest",
     "test-jest-npm": "npm test -- --coverage",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "docker-build": "sudo docker build -t smartlink ."
+    "docker-build": "sudo docker build -t smartlink:latest ."
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.2",

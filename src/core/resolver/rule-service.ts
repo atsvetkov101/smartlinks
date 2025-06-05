@@ -17,8 +17,12 @@ export class RuleService {
 
 	async resolve(data: PathInfoDTO): Promise<any>{
     this.loggerService.log('invoked method resolve()');
-		const smartLinkRequest = this.requestMapper.pathInfoDTOToSmartLinkRequest(data);
-		const rulesInfo = await this.requestResolver.resolve(smartLinkRequest);
-		return Promise.resolve(rulesInfo);
+		try {
+			const smartLinkRequest = this.requestMapper.pathInfoDTOToSmartLinkRequest(data);
+			const rulesInfo = await this.requestResolver.resolve(smartLinkRequest);
+			return Promise.resolve(rulesInfo);
+		} catch (err: any) {
+      this.loggerService.error(`RuleService: ${err.message} ${JSON.stringify(err)}`);
+		}
 	}
 }
