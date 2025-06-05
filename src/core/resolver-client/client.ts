@@ -27,7 +27,7 @@ export class ResolverClient {
       `Получен ответ на '/hello' (микросервис resolver): ${JSON.stringify(res)}`,
     );
     return res;
-  }
+  } 
 
   async resolve(data: SmartLinkRequest): Promise<SmartLinkResponse> {
     const observableRes = await this.httpService.post(`${this.baseUrl}/api/v1/resolve`
@@ -37,6 +37,7 @@ export class ResolverClient {
 				});
     const res = await firstValueFrom(observableRes);
     const all = res['data']['data'];
+    this.loggerService.log(`ResolverClient.resolve(...) Respose from resolver: ${JSON.stringify(res)}`);
 
     const response = new SmartLinkResponse();
 
