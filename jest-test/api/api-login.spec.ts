@@ -6,7 +6,7 @@ import { AppService } from '../../src/entrypoints/api/app/app.service';
 import { AuthService } from '../../src/entrypoints/api/auth/auth.service';
 import { AppUsecases } from '../../src/entrypoints/api/app/app.usecases';
 import { LoggerService } from '../../src/logger/logger.service';
-import { CommandFactory } from '../../src/core/command-factory';
+
 import { Chain } from '../../src/core/chain/chain';
 import { ConditionExecutionHandler } from '../../src/core/chain/condition-execution-handler';
 import { BaseConditionExecutionHandler } from '../../src/core/chain/base-condition-execution-handler';
