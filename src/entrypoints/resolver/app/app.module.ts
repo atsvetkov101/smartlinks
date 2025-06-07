@@ -7,7 +7,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AppUsecases } from './app.usecases';
 
-import { CommandFactory } from '../../../core/command-factory';
 import { Chain } from '../../../core/chain/chain';
 import { ConditionExecutionHandler } from '../../../core/chain/condition-execution-handler';
 import { RequestService } from '../../../core/request/request.service';
@@ -43,8 +42,7 @@ import { BaseConditionExecutionHandler } from '../../../core/chain/base-conditio
 	providers: [AppService
 		, LoggerService
 		, AppUsecases
-		, CommandFactory
-	    , Chain
+    , Chain
 		, ConditionExecutionHandler
 		, RequestMapper
 		, RuleService

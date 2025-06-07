@@ -37,7 +37,7 @@ export class ResolverClient {
 				});
     const res = await firstValueFrom(observableRes);
     const all = res['data']['data'];
-    this.loggerService.log(`ResolverClient.resolve(...) Respose from resolver: ${JSON.stringify(res)}`);
+    this.loggerService.log(`ResolverClient.resolve(...) 'all' from resolver : ${JSON.stringify(all)}`);
 
     const response = new SmartLinkResponse();
 

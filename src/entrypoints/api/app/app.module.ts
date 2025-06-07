@@ -8,7 +8,6 @@ import { AppService } from './app.service';
 import { JwtModule } from '@nestjs/jwt';
 import { AppUsecases } from './app.usecases';
 import { AuthService } from '../auth/auth.service';
-import { CommandFactory } from '../../../core/command-factory';
 import { Chain } from '../../../core/chain/chain';
 import { ConditionExecutionHandler } from '../../../core/chain/condition-execution-handler';
 import { RequestProcessingMiddleware } from '../request/request-processing-middleware';
@@ -39,8 +38,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'default;.super!@321SECRET$$';
 		, LoggerService
 		, AppUsecases
 		, AuthService
-		, CommandFactory
-	    , Chain
+	  , Chain
 		, ConditionExecutionHandler
 		, RequestService
 		, {

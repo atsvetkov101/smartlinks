@@ -31,7 +31,7 @@ describe('condition-dictionary tests', () => {
       expect(keys.length).toBe(2);
     });
 
-    it.only('condition-dictionary usage', async () => {
+    it('condition-dictionary usage', async () => {
       
       process.env.CONDITIONS_DIRECTORY = 'test-conditions';
 
