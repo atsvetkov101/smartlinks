@@ -4,7 +4,7 @@ import { ExceptionHandlerFunction } from './exception-handler-function';
 import { ExceptionHandlers } from './exception-handlers-type';
 import { Injectable } from '@nestjs/common';
 
-const BASE_HANDLER = 0;
+export const BASE_HANDLER = 0;
 
 @Injectable()
 export class ExceptionHandler {
@@ -24,3 +24,4 @@ export class ExceptionHandler {
     }
   }
 }
+
