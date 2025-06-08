@@ -52,6 +52,9 @@ export class RulesBuilder{
 
   private fillTheChain(ruleEntity: object, input: SmartLinkRequest, chain: Chain) {
     let conditionId;
+    if(!ruleEntity.hasOwnProperty('conditions') || !ruleEntity['conditions']){
+      return; // если нет условий, то ничего не делаем. правило будет добавлено в список правил
+    }
     for (const condition of ruleEntity['conditions']) {
       try {
       conditionId = condition['id'];

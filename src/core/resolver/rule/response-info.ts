@@ -3,11 +3,13 @@ import { set } from "express-http-context";
 export class ResponseInfo {
   private _url: string;
   private _status: number;
-  private _ruleNotFound: boolean;
+  private _ruleNotFound: boolean = false;
   constructor(
     status: number = 200,
   )
-  {}
+  {
+    this._status = status;
+  }
   get url(): string {
     return this._url;
   }

@@ -44,6 +44,8 @@ export class ResolverClient {
     if(all['url']){
       response.url = all['url'];
       response.status = 302;
+    }else{
+      response.status = 404;
     }
     
     return Promise.resolve(response);
